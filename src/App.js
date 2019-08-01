@@ -6,11 +6,12 @@ class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <FlatList
-          keyExtractor={pokemon => pokemon.number}
-          data={pokemon}
-          renderItem={({ item }) => <Text>{item.name}</Text>}
-        />
+        <Router>
+          <Switch>
+            <Route exact path="/" render={props => <Home {...props} />} />
+            <Route path="/pokemon" render={props => <Pokemon {...props} />} />
+          </Switch>
+        </Router>
       </View>
     );
   }
@@ -22,7 +23,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 50,
     padding: 50
-  },
+  }
 });
 
 export default App;
