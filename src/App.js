@@ -1,15 +1,39 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
-import pokemon from './pokemonStore';
+import { View, StyleSheet } from 'react-native';
+import { Router, Switch, Route } from './routing';
+import Home from './Home';
+import Pokemon from './Pokemon';
 
 class App extends Component {
+  state = {
+    selectedPokemon: null
+  };
+  selectPokemon = selectedPokemon => {
+    this.setState({
+      selectedPokemon
+    });
+  };
   render() {
     return (
       <View style={styles.container}>
         <Router>
           <Switch>
-            <Route exact path="/" render={props => <Home {...props} />} />
-            <Route path="/pokemon" render={props => <Pokemon {...props} />} />
+            <Route
+              exact
+              path="/"
+              render={props => (
+                <Home {...props} selectPokemon={this.selectPokemon} />
+              )}
+            />
+            <Route
+              path="/pokemon"
+              render={props => (
+                <Pokemon
+                  {...props}
+                  selectedPokemon={this.state.selectedPokemon}
+                />
+              )}
+            />
           </Switch>
         </Router>
       </View>

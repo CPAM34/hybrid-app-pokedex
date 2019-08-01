@@ -1,28 +1,45 @@
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import pokemon from './pokemonStore';
+import { Link } from './routing';
+
 const Pokemon = props => {
-  const examplePokemon = pokemon[0];
+  const backButton = (
+    <View>
+      <Link to="/">
+        <Text>Go Back</Text>
+      </Link>
+    </View>
+  );
+  if (!props.selectedPokemon) {
+    return (
+      <View>
+        {backButton}
+        <Text>No Pokemon selected</Text>
+      </View>
+    );
+  }
+  const {
+    selectedPokemon: { name, number, type, photoUrl }
+  } = props;
   return (
     <View>
       <View>
+        {backButton}
         <View>
-          <Text>{`#${examplePokemon.number}`}</Text>
+          <Text>{`#${number}`}</Text>
         </View>
         <View>
-          <Text>{`Name: ${examplePokemon.name}`}</Text>
+          <Text>{`Name: ${name}`}</Text>
         </View>
         <View>
-          <Text>{`Type: ${examplePokemon.type}`}</Text>
+          <Text>{`Type: ${type}`}</Text>
         </View>
         <View>
-          <Image
-            style={{ width: 50, height: 50 }}
-            source={{ uri: examplePokemon.photoUrl }}
-          />
+          <Image style={{ width: 50, height: 50 }} source={{ uri: photoUrl }} />
         </View>
       </View>
     </View>
   );
 };
+
 export default Pokemon;
