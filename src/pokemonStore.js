@@ -16,5 +16,11 @@ export default [
     name: 'Squirtle',
     photoUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png',
     type: 'water'
+  },
+  {
+    number: '10',
+    name: 'Caterpie',
+    photoUrl: 'https://assets.pokemon.com/assets/cms2/img/pokedex/full/010.png',
+    type: 'bug'
   }
 ];
